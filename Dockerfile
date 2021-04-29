@@ -1,6 +1,6 @@
 FROM openjdk:14-slim
 		
-ARG JMETER_VERSION=5.4.1
+ARG JMETER_VERSION
 ARG JMETER_INSTALLATION_PATH="/opt/jmeter/apache-jmeter-${JMETER_VERSION}" 
 ARG CURL_OPTS="--connect-timeout 10     --retry 5     --retry-delay 1     --retry-max-time 60" 
 ARG JMETER_CMD_RUNNER_PATH="${JMETER_INSTALLATION_PATH}/lib/cmdrunner-2.2.jar" 
