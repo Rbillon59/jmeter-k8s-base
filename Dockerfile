@@ -14,14 +14,21 @@ RUN apt-get update && \
     apt-get install -y wget coreutils unzip bash curl
 
 # Installing jmeter clean and link
-RUN   mkdir /opt/jmeter && \
-      cd /opt/jmeter && \
-      wget https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-$JMETER_VERSION.tgz && \
-      tar --extract --gzip --file apache-jmeter-$JMETER_VERSION.tgz && \
-      rm apache-jmeter-$JMETER_VERSION.tgz && \
-      rm --recursive --force /var/cache/apk/* && \
-      rm --recursive --force  ${JMETER_INSTALLATION_PATH}/docs && \
-      ln --symbolic ${JMETER_INSTALLATION_PATH} /opt/jmeter/apache-jmeter
+RUN mkdir /opt/jmeter && \
+    cd /opt/jmeter && \
+    wget https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-$JMETER_VERSION.tgz && \
+    tar --extract --gzip --file apache-jmeter-$JMETER_VERSION.tgz && \
+    rm apache-jmeter-$JMETER_VERSION.tgz && \
+    rm --recursive --force /var/cache/apk/* && \
+    rm --recursive --force  ${JMETER_INSTALLATION_PATH}/docs
+
+RUN ln --symbolic ${JMETER_INSTALLATION_PATH} /opt/jmeter/apache-jmeter && \
+    ln --symbolic /proc/1/fd/1 ${JMETER_INSTALLATION_PATH}/bin/jmeter-master.out && \
+    ln --symbolic /proc/1/fd/1 ${JMETER_INSTALLATION_PATH}/bin/jmeter-master.err && \
+    ln --symbolic /proc/1/fd/1 ${JMETER_INSTALLATION_PATH}/bin/jmeter-injector.out && \
+    ln --symbolic /proc/1/fd/1 ${JMETER_INSTALLATION_PATH}/bin/jmeter-injector.err && \
+    echo "client.tries=3" >> ${JMETER_INSTALLATION_PATH}/bin/jmeter.properties && \
+    echo "client.retries_delay=20" >> ${JMETER_INSTALLATION_PATH}/bin/jmeter.properties
 
 # Install Plugin cmd runner and jmeter plugin
 RUN curl ${CURL_OPTS} --location --output "${JMETER_PLUGIN_PATH}" "${JMETER_PLUGIN_URL}"  && \
