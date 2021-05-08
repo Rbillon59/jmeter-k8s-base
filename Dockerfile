@@ -27,6 +27,8 @@ RUN ln --symbolic ${JMETER_INSTALLATION_PATH} /opt/jmeter/apache-jmeter && \
     ln --symbolic /proc/1/fd/1 ${JMETER_INSTALLATION_PATH}/bin/jmeter-master.err && \
     ln --symbolic /proc/1/fd/1 ${JMETER_INSTALLATION_PATH}/bin/jmeter-injector.out && \
     ln --symbolic /proc/1/fd/1 ${JMETER_INSTALLATION_PATH}/bin/jmeter-injector.err && \
+    ln --symbolic /proc/1/fd/1 ${JMETER_INSTALLATION_PATH}/bin/jmeter.log && \
+    ln --symbolic /proc/1/fd/1 ${JMETER_INSTALLATION_PATH}/bin/jmeter-server.log && \
     echo "client.tries=3" >> ${JMETER_INSTALLATION_PATH}/bin/jmeter.properties && \
     echo "client.retries_delay=20" >> ${JMETER_INSTALLATION_PATH}/bin/jmeter.properties
 
