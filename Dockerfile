@@ -6,7 +6,7 @@ ARG CURL_OPTS="--connect-timeout 10     --retry 5     --retry-delay 1     --retr
 ARG JMETER_CMD_RUNNER_PATH="${JMETER_INSTALLATION_PATH}/lib/cmdrunner-2.2.jar" 
 ARG JMETER_CMD_RUNNER_URL="http://search.maven.org/remotecontent?filepath=kg/apc/cmdrunner/2.2/cmdrunner-2.2.jar" 
 ARG JMETER_PLUGIN_URL="https://jmeter-plugins.org/get/" 
-ARG JMETER_PLUGIN_PATH="${JMETER_INSTALLATION_PATH}/lib/ext/jmeter-plugin-manager.jar" 
+ARG JMETER_PLUGIN_PATH="${JMETER_INSTALLATION_PATH}/lib/ext/jmeter-plugin-manager.jar"
 
 ## Installing dependencies
 RUN apt-get update && \
@@ -36,6 +36,8 @@ RUN ln --symbolic ${JMETER_INSTALLATION_PATH} /opt/jmeter/apache-jmeter && \
 RUN curl ${CURL_OPTS} --location --output "${JMETER_PLUGIN_PATH}" "${JMETER_PLUGIN_URL}"  && \
     curl ${CURL_OPTS} --location --output "${JMETER_CMD_RUNNER_PATH}" "${JMETER_CMD_RUNNER_URL}" && \
     java -classpath "${JMETER_PLUGIN_PATH}" org.jmeterplugins.repository.PluginManagerCMDInstaller 
+
+RUN curl ${CURL_OPTS} --location --output "${JMETER_INSTALLATION_PATH}/lib/jolokia-java-agent.jar"  "https://search.maven.org/remotecontent?filepath=org/jolokia/jolokia-jvm/1.6.2/jolokia-jvm-1.6.2-agent.jar"
 
 ## Setting users &&  directory and right
 RUN mkdir /report &&  \
