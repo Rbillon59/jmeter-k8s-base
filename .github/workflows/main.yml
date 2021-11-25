@@ -51,7 +51,7 @@ jobs:
     - name: Build and push
       uses: docker/build-push-action@v2
       with:
-        context: ./docker
+        context: .
         push: true
         tags: rbillon59/jmeter-k8s-base:5.4.1${{ matrix.releases }}
         build-args: JMETER_VERSION=${{ matrix.releases }}
