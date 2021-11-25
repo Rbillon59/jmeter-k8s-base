@@ -53,5 +53,5 @@ jobs:
       with:
         context: .
         push: true
-        tags: rbillon59/jmeter-k8s-base:5.4.1${{ matrix.releases }}
+        tags: rbillon59/jmeter-k8s-base:${{ matrix.releases }}
         build-args: JMETER_VERSION=${{ matrix.releases }}
