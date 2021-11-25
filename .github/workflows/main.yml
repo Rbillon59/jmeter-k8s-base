@@ -17,7 +17,7 @@ jobs:
       id: set-matrix
       run: |
         matrix=[]
-        RELEASES=$(curl -s https://archive.apache.org/dist/jmeter/binaries/ | grep -oEi "apache-jmeter-[0-9].*.zip\">" | grep -o "[0-9]\+.[0-9]\+\|[0-9]\+.[0-9]\+.[0-9]\+" | tail -n 10)
+        RELEASES=($(curl -s https://archive.apache.org/dist/jmeter/binaries/ | grep -oEi "apache-jmeter-[0-9].*.zip\">" | grep -o "[0-9]\+.[0-9]\+\|[0-9]\+.[0-9]\+.[0-9]\+" | tail -n 10))
         for release in "${RELEASES[@]}"; do  matrix=$(jq --compact-output -n --arg release "$release" --argjson matrix "$matrix" '$matrix + [$release]'); done
         echo "::set-output name=matrix::$matrix"
     outputs:
