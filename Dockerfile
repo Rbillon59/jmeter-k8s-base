@@ -16,9 +16,9 @@ RUN apt-get update && \
 # Installing jmeter clean and link
 RUN mkdir /opt/jmeter && \
     cd /opt/jmeter && \
-    wget https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-$JMETER_VERSION.tgz && \
-    tar --extract --gzip --file apache-jmeter-$JMETER_VERSION.tgz && \
-    rm apache-jmeter-$JMETER_VERSION.tgz && \
+    wget https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-${JMETER_VERSION}.tgz && \
+    tar --extract --gzip --file apache-jmeter-${JMETER_VERSION}.tgz && \
+    rm apache-jmeter-${JMETER_VERSION}.tgz && \
     rm --recursive --force /var/cache/apk/* && \
     rm --recursive --force  ${JMETER_INSTALLATION_PATH}/docs
 
