@@ -22,6 +22,17 @@ jobs:
         echo "::set-output name=matrix::$matrix"
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
+
+  get-latest-release:
+    runs-on: ubuntu-latest
+    steps:
+    - name: get latest release to build
+      id: set-latest-release
+      run: |
+        RELEASE=$(curl -s https://archive.apache.org/dist/jmeter/binaries/ | grep -oEi "apache-jmeter-[0-9].*.zip\">" | grep -o "[0-9]\+.[0-9]\+\|[0-9]\+.[0-9]\+.[0-9]\+" | tail -n 1)
+        echo "::set-output name=release::$RELEASE"
+    outputs:
+      matrix: ${{ steps.set-latest-release.outputs.release }}
       
   build-n-push:
     needs: generate-matrix
@@ -55,3 +66,34 @@ jobs:
         push: true
         tags: rbillon59/jmeter-k8s-base:${{ matrix.releases }}
         build-args: JMETER_VERSION=${{ matrix.releases }}
+
+  build-n-push-latest:
+    needs: get-latest-release
+    runs-on: ubuntu-latest
+    steps:
+    - name: debug
+      run: |
+        echo "building and pushing ${{ needs.get-latest-release.outputs.release }}"  
+          
+    - name: Build docker images with tags
+      uses: actions/checkout@v2
+      
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@v1
+      
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
+
+    - name: Login to DockerHub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    - name: Build and push
+      uses: docker/build-push-action@v2
+      with:
+        context: .
+        push: true
+        tags: rbillon59/jmeter-k8s-base:latest
+        build-args: JMETER_VERSION=${{ needs.get-latest-release.outputs.release }}
