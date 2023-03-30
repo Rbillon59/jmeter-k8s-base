@@ -3,8 +3,8 @@ FROM openjdk:14-slim
 ARG JMETER_VERSION
 ARG JMETER_INSTALLATION_PATH="/opt/jmeter/apache-jmeter-${JMETER_VERSION}" 
 ARG CURL_OPTS="--connect-timeout 10     --retry 5     --retry-delay 1     --retry-max-time 60" 
-ARG JMETER_CMD_RUNNER_PATH="${JMETER_INSTALLATION_PATH}/lib/cmdrunner-2.2.jar" 
-ARG JMETER_CMD_RUNNER_URL="http://search.maven.org/remotecontent?filepath=kg/apc/cmdrunner/2.2/cmdrunner-2.2.jar" 
+ARG JMETER_CMD_RUNNER_PATH="${JMETER_INSTALLATION_PATH}/lib/cmdrunner-2.3.jar" 
+ARG JMETER_CMD_RUNNER_URL="http://search.maven.org/remotecontent?filepath=kg/apc/cmdrunner/2.3/cmdrunner-2.3.jar" 
 ARG JMETER_PLUGIN_URL="https://jmeter-plugins.org/get/" 
 ARG JMETER_PLUGIN_PATH="${JMETER_INSTALLATION_PATH}/lib/ext/jmeter-plugin-manager.jar"
 
@@ -29,6 +29,8 @@ RUN ln --symbolic ${JMETER_INSTALLATION_PATH} /opt/jmeter/apache-jmeter && \
     ln --symbolic /proc/1/fd/1 ${JMETER_INSTALLATION_PATH}/bin/jmeter-injector.err && \
     ln --symbolic /proc/1/fd/1 ${JMETER_INSTALLATION_PATH}/bin/jmeter.log && \
     ln --symbolic /proc/1/fd/1 ${JMETER_INSTALLATION_PATH}/bin/jmeter-server.log && \
+    ln --symbolic /proc/1/fd/1 ${JMETER_INSTALLATION_PATH}/bin/plugins-install.out && \
+    ln --symbolic /proc/1/fd/1 ${JMETER_INSTALLATION_PATH}/bin/plugins-install.err && \
     echo "client.tries=3" >> ${JMETER_INSTALLATION_PATH}/bin/jmeter.properties && \
     echo "client.retries_delay=20" >> ${JMETER_INSTALLATION_PATH}/bin/jmeter.properties
 
