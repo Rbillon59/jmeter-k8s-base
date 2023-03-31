@@ -19,20 +19,20 @@ Available Image Tags 🐳
 -------------------- 
 The following image tags are available for this Docker image on [DockerHub](https://hub.docker.com/r/rbillon59/jmeter-k8s-base/tags?page=1&ordering=-name):
 
-3.3
-4.0
-5.0
-5.1
-5.1.1
-5.2
-5.2.1
-5.3
-5.4
-5.4.1
-5.4.2
-5.4.3
-5.5
-latest (5.5)
+- 3.3
+- 4.0
+- 5.0
+- 5.1
+- 5.1.1
+- 5.2
+- 5.2.1
+- 5.3
+- 5.4
+- 5.4.1
+- 5.4.2
+- 5.4.3
+- 5.5
+- latest (5.5)
 
 Let's Contribute 🤝
 -------------------
