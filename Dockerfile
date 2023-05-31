@@ -1,4 +1,4 @@
-FROM openjdk:14-slim
+FROM openjdk:21-slim
 		
 ARG JMETER_VERSION
 ARG JMETER_INSTALLATION_PATH="/opt/jmeter/apache-jmeter-${JMETER_VERSION}" 
@@ -39,7 +39,7 @@ RUN curl ${CURL_OPTS} --location --output "${JMETER_PLUGIN_PATH}" "${JMETER_PLUG
     curl ${CURL_OPTS} --location --output "${JMETER_CMD_RUNNER_PATH}" "${JMETER_CMD_RUNNER_URL}" && \
     java -classpath "${JMETER_PLUGIN_PATH}" org.jmeterplugins.repository.PluginManagerCMDInstaller 
 
-RUN curl ${CURL_OPTS} --location --output "${JMETER_INSTALLATION_PATH}/lib/jolokia-java-agent.jar"  "https://search.maven.org/remotecontent?filepath=org/jolokia/jolokia-jvm/1.6.2/jolokia-jvm-1.6.2-agent.jar"
+RUN curl ${CURL_OPTS} --location --output "${JMETER_INSTALLATION_PATH}/lib/jolokia-java-agent.jar"  "https://search.maven.org/remotecontent?filepath=org/jolokia/jolokia-jvm/1.7.2/jolokia-jvm-1.7.2.jar"
 
 ## Setting users &&  directory and right
 RUN mkdir /report &&  \
