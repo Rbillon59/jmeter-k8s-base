@@ -66,6 +66,7 @@ jobs:
         push: true
         tags: rbillon59/jmeter-k8s-base:${{ matrix.releases }}
         build-args: JMETER_VERSION=${{ matrix.releases }}
+        platforms: linux/amd64,linux/arm64
 
   build-n-push-latest:
     needs: get-latest-release
@@ -97,3 +98,4 @@ jobs:
         push: true
         tags: rbillon59/jmeter-k8s-base:latest
         build-args: JMETER_VERSION=${{ needs.get-latest-release.outputs.release }}
+        platforms: linux/amd64,linux/arm64
