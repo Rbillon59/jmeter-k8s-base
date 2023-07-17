@@ -32,7 +32,10 @@ The following image tags are available for this Docker image on [DockerHub](http
 - 5.4.2
 - 5.4.3
 - 5.5
-- latest (5.5)
+- 5.6
+- 5.6.1
+- 5.6.2
+- latest (5.6.2)
 
 Let's Contribute 🤝
 -------------------
