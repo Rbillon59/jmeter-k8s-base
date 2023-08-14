@@ -1,7 +1,7 @@
 🚀 JMeter-K8s-Base Repository 🐳
 ================================
 
-This repository contains the Dockerfile of the JMeter image used in the [JMeter-K8s-Starterkit](https://github.com/Rbillon59/jmeter-k8s-starterkit) template.
+This repository contains the Dockerfile of the JMeter image used in the [JMeter-K8s-Starterkit](https://github.com/Rbillon59/jmeter-k8s-starterkit) template and the [JMeter-docker-compose-starterkit](https://github.com/Rbillon59/jmeter-docker-compose-starterkit).
 
 About 📝
 --------
@@ -9,6 +9,8 @@ About 📝
 This Dockerfile is built through **Github action and then pushed to DockerHub**. The image tags are **tied to the JMeter version**, for instance, rbillon59/jmeter-k8s-base:5.5 is for Apache JMeter version 5.5. Additionally, the **latest tag is available as the last version of JMeter**.
 
 The images are built **once a week** and are available in DockerHub at https://hub.docker.com/r/rbillon59/jmeter-k8s-base/tags.
+
+> The embedded Java version est `openjdk-16`
 
 How to use 🛠️
 --------------
