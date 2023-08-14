@@ -10,7 +10,7 @@ This Dockerfile is built through **Github action and then pushed to DockerHub**.
 
 The images are built **once a week** and are available in DockerHub at https://hub.docker.com/r/rbillon59/jmeter-k8s-base/tags.
 
-> The embedded Java version est `openjdk-16`
+> The embedded Java version is `openjdk-16`
 
 How to use 🛠️
 --------------
